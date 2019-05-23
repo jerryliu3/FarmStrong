@@ -23,9 +23,11 @@ import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final long CONNECTION_TIME_OUT_MS = 100;
 
     private GoogleApiClient client;
+    private MobileServiceClient azureClient;
     private String nodeId;
     private static final String TAG = "MainActivity";
     private ArrayList<String> readings;
@@ -49,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         main = (TextView) findViewById(R.id.helloworld);
         readings = new ArrayList<String>();
         exit = (Button) findViewById(R.id.exit);
+        try {
+            azureClient = new MobileServiceClient(
+                    "https://www.google.com",       // Replace with the Site URL
+                    this);                  // Your application Context
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         initApi();
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
