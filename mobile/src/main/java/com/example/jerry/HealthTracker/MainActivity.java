@@ -31,7 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity implements MessageClient.OnMessageReceivedListener, DataClient.OnDataChangedListener{
+public class MainActivity extends AppCompatActivity {
     private static final long CONNECTION_TIME_OUT_MS = 100;
 
     private GoogleApiClient client;
@@ -49,20 +49,6 @@ public class MainActivity extends AppCompatActivity implements MessageClient.OnM
         main = (TextView) findViewById(R.id.helloworld);
         readings = new ArrayList<String>();
         exit = (Button) findViewById(R.id.exit);
-        toggleIntent = (Switch) findViewById(R.id.toggleIntent);
-        toggleIntent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(isChecked)
-                {
-                    intentOn = true;
-                }
-                else
-                {
-                    intentOn = false;
-                }
-            }
-        });
         initApi();
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -177,59 +163,7 @@ public class MainActivity extends AppCompatActivity implements MessageClient.OnM
         }).start();
     }
 
-    @Override
-    protected void onResume() {
-        Intent intent = new Intent(this, HeartRateIntentService.class);
-        stopService(intent);
-        Log.i("jerry.HealthTracker", "Stopping service");
-        super.onResume();
-        Wearable.getMessageClient(this).addListener(this);
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("jerry.HealthTracker", "On pause");
-        Wearable.getMessageClient(this).removeListener(this);
-        //saveData(findViewById(android.R.id.content));
-    }
-
-    @Override
-    public void onMessageReceived(final MessageEvent messageEvent) {
-        /*LOGD(TAG, "onMessageReceived() A message from watch was received:"
-                + messageEvent.getRequestId() + " " + messageEvent.getPath());*/
-        main.setText(messageEvent.getPath());
-        readings.add(messageEvent.getPath());
-    }
-
-    @Override
-    public void onDataChanged(final DataEventBuffer dataEventBuffer) {
-        /*LOGD(TAG, "onMessageReceived() A message from watch was received:"
-                + messageEvent.getRequestId() + " " + messageEvent.getPath());*/
-
-        Iterator<DataEvent> iterator = dataEventBuffer.iterator();
-        List<DataEvent> list = new ArrayList<DataEvent>();
-        while(iterator.hasNext())
-        {
-            list.add(iterator.next());
-        }
-        main.setText(list.get(0).getDataItem().toString());
-    }
-    @Override
-    protected void onUserLeaveHint(){
-        onPause();
-        Log.i("jerry.HealthTracker", "On user leave hint");
-        if(intentOn) {
-            Intent intent = new Intent(this, HeartRateIntentService.class);
-            startService(intent);
-        }
-        super.onUserLeaveHint();
-    }
     public void exit(View view){
-        Wearable.getMessageClient(this).removeListener(this);
-        Intent intent = new Intent(this, HeartRateIntentService.class);
-        stopService(intent);
         finish();
     }
 }
