@@ -51,4 +51,16 @@
         tools:layout_editor_absoluteX="141dp"
         tools:layout_editor_absoluteY="325dp" />
 
+    <Button
+        android:id="@+id/classifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="classifierActivity"
+        android:text="Classifier Activity"
+        app:layout_constraintTop_toBottomOf="@id/reset"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="530dp" />
+
 </android.support.constraint.ConstraintLayout>

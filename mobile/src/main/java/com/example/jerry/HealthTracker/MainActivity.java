@@ -52,17 +52,24 @@ public class MainActivity extends AppCompatActivity {
         main = (TextView) findViewById(R.id.helloworld);
         readings = new ArrayList<String>();
         exit = (Button) findViewById(R.id.exit);
-        try {
+        /*try {
             azureClient = new MobileServiceClient(
                     "https://www.google.com",       // Replace with the Site URL
                     this);                  // Your application Context
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
+        }*/
         initApi();
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
     }
+
+    public void classifierActivity(View view) {
+        Intent intent = new Intent(this, ClassifierActivity.class);
+        startActivity(intent);
+    }
+
+
 
     // Check if external storage is available to read and write
     public boolean isExternalStorageWritable() {
