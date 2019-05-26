@@ -25,7 +25,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
     implementation 'com.microsoft.azure:azure-mobile-android:3.4.0@aar'
     implementation 'org.tensorflow:tensorflow-android:+'
