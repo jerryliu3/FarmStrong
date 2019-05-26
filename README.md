@@ -1,8 +1,4 @@
-# HealthTracker
-This project demonstrates the transfer and analysis of heart rate data from an AndroidWear smartwatch to an Android smartphone using Bluetooth.
+# FarmStrong
+This project uses Microsoft Custom Vision to classify diseases and states of tomato plants.
 
-
-Data can be transferred while screens are on or off, and the data can be saved directly to the phone.
-
-
-Analysis algorithms are currently under development.
+Created by: Belinda Hoang (UToronto), Denesh Kumar (McMasterU), Jerry Liu (UWaterloo) Sejin Kim (WesternU) 
