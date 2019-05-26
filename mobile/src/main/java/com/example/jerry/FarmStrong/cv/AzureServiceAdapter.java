@@ -1,4 +1,4 @@
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.cv;
 
 import android.content.Context;
 import com.microsoft.windowsazure.mobileservices.*;

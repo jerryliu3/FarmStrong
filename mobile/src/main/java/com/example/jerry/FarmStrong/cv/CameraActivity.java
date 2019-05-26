@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.cv;
 
 import android.Manifest;
 import android.app.Activity;
@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import java.nio.ByteBuffer;
 
+import com.example.jerry.FarmStrong.R;
 import com.example.jerry.FarmStrong.env.ImageUtils;
 import com.example.jerry.FarmStrong.env.Logger;
 

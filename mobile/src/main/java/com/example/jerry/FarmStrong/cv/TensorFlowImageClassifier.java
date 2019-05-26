@@ -1,4 +1,4 @@
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.cv;
 
 /* Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 

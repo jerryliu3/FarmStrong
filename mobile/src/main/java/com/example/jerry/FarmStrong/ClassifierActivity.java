@@ -31,7 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.example.jerry.FarmStrong.OverlayView.DrawCallback;
+import com.example.jerry.FarmStrong.cv.CameraActivity;
+import com.example.jerry.FarmStrong.cv.Classifier;
+import com.example.jerry.FarmStrong.cv.MSCognitiveServicesClassifier;
+import com.example.jerry.FarmStrong.cv.OverlayView.DrawCallback;
 import com.example.jerry.FarmStrong.env.BorderedText;
 import com.example.jerry.FarmStrong.env.Logger;
 

@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
     public void saveData(View view) {
         Log.i("jerry.FarmStrong", "Saving data");
         try {
-            String externalfilename = "HeartRateData.txt";
+            String externalfilename = "FarmStrongData.txt";
             if (isExternalStorageWritable()) {
             } else {
                 main.setText("not writable");
             }
             File file = Environment.getExternalStorageDirectory();
-            File newFile = new File(file, "Wearable App");
+            File newFile = new File(file, "FarmStrong");
             if (!newFile.exists()) {
                 newFile.mkdirs();
             }

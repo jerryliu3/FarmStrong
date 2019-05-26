@@ -17,7 +17,7 @@
 * See the License for specific language governing permissions and limitations under the License.
 */
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.cv;
 
 import android.content.Context;
 import android.content.res.AssetManager;
