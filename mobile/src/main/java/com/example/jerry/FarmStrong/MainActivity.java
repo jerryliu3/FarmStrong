@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return (Environment.MEDIA_MOUNTED.equals(state));
+
     }
 
     public void saveData(View view) {

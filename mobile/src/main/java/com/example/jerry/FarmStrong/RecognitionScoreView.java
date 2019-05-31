@@ -19,7 +19,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -28,10 +32,10 @@ import java.util.List;
 import com.example.jerry.FarmStrong.Classifier.Recognition;
 
 public class RecognitionScoreView extends View implements ResultsView {
-    private static final float TEXT_SIZE_DIP = 24;
+    private static final float TEXT_SIZE_DIP = 10;
     private List<Recognition> results;
     private final float textSizePx;
-    private final Paint fgPaint;
+    private final TextPaint fgPaint;
 
     public RecognitionScoreView(final Context context, final AttributeSet set) {
         super(context, set);
@@ -39,7 +43,7 @@ public class RecognitionScoreView extends View implements ResultsView {
         textSizePx =
                 TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
-        fgPaint = new Paint();
+        fgPaint = new TextPaint();
         fgPaint.setTextSize(textSizePx);
     }
 
@@ -54,11 +58,16 @@ public class RecognitionScoreView extends View implements ResultsView {
 
         fgPaint.setColor(Color.WHITE);
 
-        if (results != null && results.size() > 0) {
+        if (results != null && results.size() > 0)
+        {
+
             int y = (int) (fgPaint.getTextSize() * 1.4f);
             final Recognition recog = results.get(0);
-            final int x = (int)(canvas.getWidth() - fgPaint.measureText(recog.getTitle())) / 2;
-            canvas.drawText(recog.getTitle(), x, y, fgPaint);
+            final int x = (int)(canvas.getWidth()- fgPaint.measureText(recog.toString()));
+            StaticLayout sl = new StaticLayout("" + recog.toString(), fgPaint, canvas.getWidth(), Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
+            canvas.translate(100,0);
+            sl.draw(canvas);
+            Log.d("textlength",""+ x);
         }
     }
 }

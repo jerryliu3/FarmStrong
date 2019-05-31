@@ -1,2 +1,38 @@
-Nature
-People
+Apple: Apple Scab
+Apple: Black Rot
+Apple: Cedar Apple Rust
+Apple: Healthy
+Bell Pepper: Bacterial Spot
+Bell Pepper: Healthy
+Blueberry: Healthy
+Cherry: Healthy
+Cherry: Powdery Mildew
+Corn: Common Rust
+Corn: Gray Leaf Spot
+Corn: Healthy
+Corn: Northern Leaf Blight
+Grape: Black Measles
+Grape: Black Rot
+Grape: Healthy
+Grape: Isariopsis Leaf Spot
+Orange: Citrus Greening
+Peach: Bacterial Spot
+Peach: Healthy
+Potato: Early Blight
+Potato: Healthy
+Potato: Late Blight
+Raspberry: Healthy
+Soybean: Healthy
+Squash: Powdery Mildew
+Strawberry: Healthy
+Strawberry: Leaf Scorch
+Tomato: Bacterial Spot
+Tomato: Early Blight
+Tomato: Healthy
+Tomato: Late Blight
+Tomato: Leaf Mold
+Tomato: Septoria Leaf Spot
+Tomato: Spider Mites
+Tomato: Target Spot
+Tomato: Tomato Mosaic Virus
+Tomato: Tomato Yellow Leaf Curl Virus

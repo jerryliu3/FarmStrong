@@ -24,6 +24,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.util.Log;
 
 import junit.framework.Assert;
 
@@ -34,6 +35,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class MSCognitiveServicesClassifier {
@@ -138,16 +140,37 @@ public class MSCognitiveServicesClassifier {
         inferenceInterface.fetch(OUTPUT_NAME, outputs);
 
         int maxIndex = -1;
+        int maxIndex2 = -1;
+        int maxIndex3 = -1;
         float maxConf = 0.f;
+        float maxConf2 = 0.f;
+        float maxConf3 = 0.f;
 
         for (int i = 0; i < outputs.length; ++i) {
-            if (outputs[i] > maxConf) {
+            if (outputs[i] > maxConf)
+            {
+                maxConf3 = maxConf2;
+                maxConf2 = maxConf;
                 maxConf = outputs[i];
+                maxIndex3 = maxIndex2;
+                maxIndex2 = maxIndex;
                 maxIndex = i;
             }
+            else if (outputs[i] > maxConf2){
+                maxConf3 = maxConf2;
+                maxConf2 = outputs[i];
+                maxIndex3 = maxIndex2;
+                maxIndex2 = i;
+            }
+            else if(outputs[i] > maxConf3){
+                maxConf3 = outputs[i];
+                maxIndex3 = i;
+            }
         }
+        Log.d("debugging", " " + maxIndex + " " + maxIndex2 + " " + maxIndex3);
+        Log.d("debugging", " " + maxConf + " " + maxConf2 + " " + maxConf3);
 
-        return new Classifier.Recognition("0", labels.get(maxIndex), maxConf, null);
+        return new Classifier.Recognition("0", labels.get(maxIndex),labels.get(maxIndex2),labels.get(maxIndex3), maxConf,maxConf2,maxConf3, null);
     }
 
     // function copied from TensorFlow samples

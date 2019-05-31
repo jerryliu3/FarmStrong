@@ -26,6 +26,7 @@ import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
     private Integer sensorOrientation;
     private MSCognitiveServicesClassifier classifier;
-
+   // private TextView tv = (TextView) findViewById(R.id.textView);
     private BorderedText borderedText;
 
     @Override
@@ -103,15 +104,16 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
                         final List<Classifier.Recognition> results = new ArrayList<>();
 
-                        if (r.getConfidence() > 0.7) {
+                      //if (r.getConfidence() > 0.7) {
                             results.add(r);
-                        }
+                        //}
 
                         LOGGER.i("Detect: %s", results);
                         if (resultsView == null) {
                             resultsView = findViewById(R.id.results);
                         }
                         resultsView.setResults(results);
+                       // tv.setText(results.toString());
                         requestRender();
                         computing = false;
                         if (postInferenceCallback != null) {

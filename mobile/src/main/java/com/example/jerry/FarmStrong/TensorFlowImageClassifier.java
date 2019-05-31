@@ -56,7 +56,7 @@ public class TensorFlowImageClassifier implements Classifier {
 
     private TensorFlowInferenceInterface inferenceInterface;
 
-    private TensorFlowImageClassifier() {}
+    public TensorFlowImageClassifier() {}
 
     /**
      * Initializes a native TensorFlow session for classifying images.
@@ -129,6 +129,7 @@ public class TensorFlowImageClassifier implements Classifier {
         Trace.beginSection("preprocessBitmap");
         // Preprocess the image data from 0-255 int to normalized float based
         // on the provided parameters.
+
         bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
         for (int i = 0; i < intValues.length; ++i) {
             final int val = intValues[i];
@@ -167,8 +168,7 @@ public class TensorFlowImageClassifier implements Classifier {
         for (int i = 0; i < outputs.length; ++i) {
             if (outputs[i] > THRESHOLD) {
                 pq.add(
-                        new Recognition(
-                                "" + i, labels.size() > i ? labels.get(i) : "unknown", outputs[i], null));
+                        new Recognition("" + i, labels.size() > i ? labels.get(i) : "unknown","fill", "fill2", outputs[i],outputs[i],outputs[i], null));
             }
         }
         final ArrayList<Recognition> recognitions = new ArrayList<Recognition>();

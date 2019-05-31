@@ -18,6 +18,7 @@ limitations under the License.
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Generic interface for interacting with different recognition engines.
@@ -36,22 +37,37 @@ public interface Classifier {
         /**
          * Display name for the recognition.
          */
-        private final String title;
+        private final String title1;
+        private  String title2;
+        private  String title3;
 
         /**
          * A sortable score for how good the recognition is relative to others. Higher should be better.
          */
-        private final Float confidence;
+        private Float confidence1;
+        private Float confidence2;
+        private Float confidence3;
+
+
 
         /** Optional location within the source image for the location of the recognized object. */
+
+        private float[] outputs;
+        private Vector<String> labels;
         private RectF location;
 
         public Recognition(
-                final String id, final String title, final Float confidence, final RectF location) {
+                final String id, final String title1, final String title2, final String title3, final Float confidence1, final Float confidence2, final Float confidence3, final RectF location) {
             this.id = id;
-            this.title = title;
-            this.confidence = confidence;
+            this.title1 = title1;
+            this.title2 = title2;
+            this.title3 = title3;
+            this.confidence1 = confidence1;
+            this.confidence2 = confidence2;
+            this.confidence3 = confidence3;
             this.location = location;
+
+
         }
 
         public String getId() {
@@ -59,11 +75,11 @@ public interface Classifier {
         }
 
         public String getTitle() {
-            return title;
+            return title1;
         }
 
         public Float getConfidence() {
-            return confidence;
+            return confidence1;
         }
 
         public RectF getLocation() {
@@ -76,25 +92,28 @@ public interface Classifier {
 
         @Override
         public String toString() {
-            String resultString = "";
+           /* String resultString = "";
             if (id != null) {
                 resultString += "[" + id + "] ";
             }
 
-            if (title != null) {
-                resultString += title + " ";
+            if (title1 != null) {
+                resultString += title1 + " ";
             }
 
-            if (confidence != null) {
-                resultString += String.format("(%.1f%%) ", confidence * 100.0f);
+            if (confidence1 != null) {
+                resultString += String.format("(%.1f%%) ", confidence1 * 100.0f);
             }
 
             if (location != null) {
                 resultString += location + " ";
             }
 
-            return resultString.trim();
+            return resultString.trim();*/
+            return "1. "+ title1 + " " + confidence1 + "\n2. "+ title2 + " " + confidence2 +"\n" +"3. "+ title3 + " " + confidence3 +" ";
         }
+
+
     }
 
     List<Recognition> recognizeImage(Bitmap bitmap);
