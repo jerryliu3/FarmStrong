@@ -32,7 +32,7 @@ import java.util.List;
 import com.example.jerry.FarmStrong.Classifier.Recognition;
 
 public class RecognitionScoreView extends View implements ResultsView {
-    private static final float TEXT_SIZE_DIP = 12;
+    private static final float TEXT_SIZE_DIP = 10;
     private List<Recognition> results;
     private final float textSizePx;
     private final TextPaint fgPaint;
