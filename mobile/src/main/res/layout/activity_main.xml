@@ -35,9 +35,7 @@
         android:onClick="exit"
         app:layout_constraintTop_toBottomOf="@id/save"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/reset"
@@ -47,9 +45,7 @@
         android:onClick="resetData"
         app:layout_constraintTop_toBottomOf="@id/exit"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/classifier"
@@ -59,8 +55,16 @@
         android:text="Classifier Activity"
         app:layout_constraintTop_toBottomOf="@id/reset"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="530dp" />
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="captureActivity"
+        android:text="Capture Activity"
+        app:layout_constraintTop_toBottomOf="@id/classifier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
