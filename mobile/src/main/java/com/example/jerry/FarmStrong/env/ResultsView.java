@@ -13,11 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.env;
 
 import java.util.List;
 
-import com.example.jerry.FarmStrong.Classifier.Recognition;
+import com.example.jerry.FarmStrong.video.Classifier.Recognition;
 
 public interface ResultsView {
   public void setResults(final List<Recognition> results);

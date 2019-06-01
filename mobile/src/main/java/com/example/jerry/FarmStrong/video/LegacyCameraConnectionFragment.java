@@ -1,4 +1,4 @@
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.video;
 
 /*
  * Copyright 2014 The Android Open Source Project
@@ -32,6 +32,8 @@ import android.view.ViewGroup;
 
 import java.io.IOException;
 
+import com.example.jerry.FarmStrong.env.AutoFitTextureView;
+import com.example.jerry.FarmStrong.R;
 import com.example.jerry.FarmStrong.env.Logger;
 
 public class LegacyCameraConnectionFragment extends Fragment {

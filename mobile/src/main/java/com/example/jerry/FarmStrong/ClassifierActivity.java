@@ -26,15 +26,17 @@ import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.example.jerry.FarmStrong.OverlayView.DrawCallback;
+import com.example.jerry.FarmStrong.env.OverlayView.DrawCallback;
 import com.example.jerry.FarmStrong.env.BorderedText;
 import com.example.jerry.FarmStrong.env.Logger;
+import com.example.jerry.FarmStrong.video.CameraActivity;
+import com.example.jerry.FarmStrong.video.Classifier;
+import com.example.jerry.FarmStrong.video.MSCognitiveServicesClassifier;
 
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
     private static final Logger LOGGER = new Logger();

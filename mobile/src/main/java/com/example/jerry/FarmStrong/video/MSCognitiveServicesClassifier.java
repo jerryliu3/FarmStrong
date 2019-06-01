@@ -17,7 +17,7 @@
 * See the License for specific language governing permissions and limitations under the License.
 */
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.video;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -35,7 +35,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Vector;
 
 public class MSCognitiveServicesClassifier {

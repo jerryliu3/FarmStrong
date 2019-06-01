@@ -13,12 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.env;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -29,7 +28,7 @@ import android.view.View;
 
 import java.util.List;
 
-import com.example.jerry.FarmStrong.Classifier.Recognition;
+import com.example.jerry.FarmStrong.video.Classifier.Recognition;
 
 public class RecognitionScoreView extends View implements ResultsView {
     private static final float TEXT_SIZE_DIP = 13;

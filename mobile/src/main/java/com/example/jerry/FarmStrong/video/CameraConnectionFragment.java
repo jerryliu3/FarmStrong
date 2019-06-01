@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jerry.FarmStrong;
+package com.example.jerry.FarmStrong.video;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -61,6 +61,8 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import com.example.jerry.FarmStrong.env.AutoFitTextureView;
+import com.example.jerry.FarmStrong.R;
 import com.example.jerry.FarmStrong.env.Logger;
 
 @SuppressLint("ValidFragment")
