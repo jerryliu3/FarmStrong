@@ -71,6 +71,11 @@ public class CaptureActivity extends Activity
         new callAPI().execute();
      }
 
+    public void savePhoto(View view){
+        MediaStore.Images.Media.insertImage(getContentResolver(), imageBitmap, "result" , resultText.toString());
+
+    }
+
     public void takeImage(View view){
         dispatchTakePictureIntent();
     }

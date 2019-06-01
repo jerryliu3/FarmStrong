@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CaptureActivity.class);
         startActivity(intent);
     }
+    public void mapActivity(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
 
     // Check if external storage is available to read and write
     public boolean isExternalStorageWritable() {

@@ -10,6 +10,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,4 +32,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:+'
     implementation 'com.microsoft.azure:azure-mobile-android:3.4.0@aar'
     implementation 'org.tensorflow:tensorflow-android:+'
+    implementation "com.microsoft.azure.maps:mapcontrol:0+"
+
 }
