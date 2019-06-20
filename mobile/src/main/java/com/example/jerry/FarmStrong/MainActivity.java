@@ -3,8 +3,8 @@ package com.example.jerry.FarmStrong;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
-
+    public void pinActivity(View view) {
+        Intent intent = new Intent(this, PinActivity.class);
+        startActivity(intent);
+    }
     // Check if external storage is available to read and write
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();

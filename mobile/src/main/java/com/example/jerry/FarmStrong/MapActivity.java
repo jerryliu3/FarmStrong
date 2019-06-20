@@ -1,12 +1,9 @@
 package com.example.jerry.FarmStrong;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.microsoft.azure.maps.mapcontrol.AzureMaps;
 import com.microsoft.azure.maps.mapcontrol.MapControl;
-import com.microsoft.azure.maps.mapcontrol.layer.SymbolLayer;
-import com.microsoft.azure.maps.mapcontrol.options.MapStyle;
-import com.microsoft.azure.maps.mapcontrol.source.DataSource;
 
 public class MapActivity extends AppCompatActivity {
 
