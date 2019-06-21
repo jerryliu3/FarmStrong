@@ -28,9 +28,13 @@
         <activity android:name=".CaptureActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".PinActivity" />
+        <activity android:name=".DashboardActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".FarmActivity"/>
         <activity android:name=".MainActivity">
 
-            <intent-filter>
+
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

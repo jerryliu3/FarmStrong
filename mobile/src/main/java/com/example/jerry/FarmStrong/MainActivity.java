@@ -3,12 +3,15 @@ package com.example.jerry.FarmStrong;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Environment;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -55,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pinActivity(View view) {
         Intent intent = new Intent(this, PinActivity.class);
+        startActivity(intent);
+    }
+    public void dashboardActivity(View view) {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        //LinearLayout dashboardBackground = (LinearLayout) findViewById(R.id.dashboardBackground);
+        //dashboardBackground.setBackgroundResource(R.drawable.dashboard);
         startActivity(intent);
     }
     // Check if external storage is available to read and write
