@@ -14,6 +14,10 @@ public class DashboardActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
     }
+    public void dashboardActivity(View view) {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+    }
     public void farmActivity(View view) {
         Intent intent = new Intent(this, FarmActivity.class);
         startActivity(intent);
