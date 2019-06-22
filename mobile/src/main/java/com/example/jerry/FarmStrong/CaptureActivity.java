@@ -44,6 +44,7 @@ public class CaptureActivity extends Activity
         resultText = (TextView) findViewById(R.id.resultText);
         modelOutput = "";
         checkCameraPermission();
+        takeImage();
     }
 
     public void checkCameraPermission(){
@@ -63,6 +64,11 @@ public class CaptureActivity extends Activity
         new callAPI().execute();
      }
 
+    public void classify(){
+        //do machine learning
+        new callAPI().execute();
+    }
+
     public void savePhoto(View view){
         MediaStore.Images.Media.insertImage(getContentResolver(), imageBitmap, "result" , resultText.toString());
 
@@ -71,6 +77,11 @@ public class CaptureActivity extends Activity
     public void takeImage(View view){
         dispatchTakePictureIntent();
     }
+
+    public void takeImage(){
+        dispatchTakePictureIntent();
+    }
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -197,7 +208,9 @@ public class CaptureActivity extends Activity
                 result += tags.get(x) + ": " + (double) Math.round(probabilities.get(x) * 100) / 100 + "\n";
             }
             resultText.setText(result);
-
+            Intent intent = new Intent(CaptureActivity.this, SuggestionActivity.class);
+            intent.putExtra("class", resultText.getText());
+            startActivity(intent);
             pd.dismiss();
         }
 

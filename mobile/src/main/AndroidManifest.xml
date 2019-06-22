@@ -30,6 +30,7 @@
         <activity android:name=".PinActivity" />
         <activity android:name=".DashboardActivity"/>
         <activity android:name=".ProfileActivity"/>
+        <activity android:name=".SuggestionActivity"/>
         <activity android:name=".FarmActivity"/>
         <activity android:name=".MainActivity">
 

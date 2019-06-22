@@ -24,14 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     private MobileServiceClient azureClient;
     private static final String TAG = "MainActivity";
-    TextView main;
-    Button exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        main = (TextView) findViewById(R.id.helloworld);
-        exit = (Button) findViewById(R.id.exit);
         /*try {
             azureClient = new MobileServiceClient(
                     "https://www.google.com",       // Replace with the Site URL
@@ -42,28 +38,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
     }
-
-    public void classifierActivity(View view) {
-        Intent intent = new Intent(this, ClassifierActivity.class);
-        startActivity(intent);
-    }
-
-    public void captureActivity(View view) {
-        Intent intent = new Intent(this, CaptureActivity.class);
-        startActivity(intent);
-    }
-    public void mapActivity(View view) {
-        Intent intent = new Intent(this, MapActivity.class);
-        startActivity(intent);
-    }
-    public void pinActivity(View view) {
-        Intent intent = new Intent(this, PinActivity.class);
-        startActivity(intent);
-    }
     public void dashboardActivity(View view) {
         Intent intent = new Intent(this, DashboardActivity.class);
-        //LinearLayout dashboardBackground = (LinearLayout) findViewById(R.id.dashboardBackground);
-        //dashboardBackground.setBackgroundResource(R.drawable.dashboard);
         startActivity(intent);
     }
     // Check if external storage is available to read and write
@@ -73,36 +49,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void saveData(View view) {
-        Log.i("jerry.FarmStrong", "Saving data");
-        try {
-            String externalfilename = "FarmStrong.txt";
-            if (isExternalStorageWritable()) {
-            } else {
-                main.setText("not writable");
-            }
-            File file = Environment.getExternalStorageDirectory();
-            File newFile = new File(file, "FarmStrong");
-            if (!newFile.exists()) {
-                newFile.mkdirs();
-            }
-         /*int variable = 0;
-         if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-         {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, variable);
-         }*/
-            File textFile = new File(newFile, externalfilename);
-            FileWriter writer = new FileWriter(textFile, true);
-            writer.flush();
-            writer.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public void exit(View view){
-        finish();
-    }
 }
