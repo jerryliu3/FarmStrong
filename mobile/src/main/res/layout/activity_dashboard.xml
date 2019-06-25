@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dashboard"
@@ -10,39 +10,43 @@
 
     <Button
         android:id="@+id/farm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="204dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="57dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@null"
         android:onClick="farmActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintHorizontal_bias="0.283"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_conversion_wrapHeight="126"
+        tools:layout_conversion_wrapWidth="231" />
 
     <Button
         android:id="@+id/capture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="84dp"
         android:background="@null"
         android:onClick="captureActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_conversion_wrapHeight="126"
+        tools:layout_conversion_wrapWidth="231" />
 
     <Button
         android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="55dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:onClick="profileActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_conversion_wrapHeight="126"
+        tools:layout_conversion_wrapWidth="231" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

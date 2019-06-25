@@ -2,4 +2,5 @@
     <string name="app_name">FarmStrong</string>
     <string name="activity_name_classification">Classify</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="title_activity_detail_view">DetailView</string>
 </resources>

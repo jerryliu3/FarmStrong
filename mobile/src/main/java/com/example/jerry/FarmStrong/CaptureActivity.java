@@ -34,6 +34,9 @@ public class CaptureActivity extends Activity
     private Bitmap imageBitmap;
     private TextView resultText;
     private String modelOutput;
+
+
+    private String name;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -70,9 +73,15 @@ public class CaptureActivity extends Activity
     }
 
     public void savePhoto(View view){
-        MediaStore.Images.Media.insertImage(getContentResolver(), imageBitmap, "result" , resultText.toString());
+        Intent intent = new Intent(CaptureActivity.this, SuggestionActivity.class);
+        intent.putExtra("class", resultText.getText());
+        intent.putExtra("img",imageBitmap);
+        startActivity(intent);
+        finish();
 
     }
+
+
 
     public void takeImage(View view){
         dispatchTakePictureIntent();
@@ -96,6 +105,7 @@ public class CaptureActivity extends Activity
             imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
         }
+
     }
 
 
@@ -111,64 +121,116 @@ public class CaptureActivity extends Activity
         }
         @Override
         protected String doInBackground(String... params){
-            String urlString = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4cb2231d-c499-40b2-a97b-5d1d03321607/classify/iterations/First%20Model%3A%20FarmStrong/image";
-            try{
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-                String answer = "";
-                urlConnection.setRequestProperty("Prediction-Key", "167bbe0980344a2bb1e04484c5b53485");
-                urlConnection.setRequestProperty("Content-Type", "image/jpeg");
-                Log.e("ImageUploader", "URL Connection: Success");
+            String urlString = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/7368cb8d-56d3-4595-b85d-26e1cc259396/classify/iterations/cross_species_diseases/image";
+            String urlString2 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/580defa3-63f5-48ac-b584-4257b7cf6e7e/classify/iterations/Iteration5/image";
+            String url3 = "";
+                //First Algorithm
+                String[] resultA = getAnswer(getClassification(urlString));
+                modelOutput = resultA[0];
+                Log.d("Classification","First One Done" + modelOutput);
+                //Second Algorithm
+                String [] resultB = getAnswer(getClassification(urlString2));
+                 double conf1 = Double.parseDouble(resultA[1]);
+                String classificationA = resultB[0];
+                 Log.d("Classification","Second One Done " +classificationA);
 
-                //urlConnection.setDoInput(true);
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setDoOutput(true);
-                urlConnection.setRequestProperty("Connection", "Keep-Alive");
-                Log.e("ImageUploader", "URL Connection: Success");
-
-                //urlConnection.connect();
-                OutputStream output = urlConnection.getOutputStream();
-                //ByteArrayOutputStream bos = new ByteArrayOutputStream(output);
-                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, output);
-                //byte[] data = bos.toByteArray();
-
-                //MultipartEntity entity = new MultipartEntity();
-                output.close();
-                Log.e("ImageUploader", "URL Connection: Success");
-
-                Scanner s = new Scanner(urlConnection.getInputStream());
-                answer = s.nextLine();
-                Log.e("ImageUploader", "Answer: " + answer);
-                s.close();
-                Log.e("ImageUploader", "URL Connection: Success");
-
-                urlConnection.disconnect();
-
-                /*urlConnection = (HttpURLConnection)url.openConnection();
-                Log.e("ImageUploader", "URL Reconnection: Success");
-
-                urlConnection.setRequestProperty("Prediction-Key", "16ab01ac6f7f43208676bb27813897fc");
-                urlConnection.setRequestProperty("Content-Type", "application/octet-stream");
-                urlConnection.setRequestMethod("GET");
-                Log.e("ImageUploader", "URL Connection: Success");
-
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                BufferedReader r = new BufferedReader(new InputStreamReader(in));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while((line = r.readLine()) != null)
-                {
-                    sb.append(line);
+                String type ="";
+                if (classificationA.equals("Potato")) {
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/f6bb20b7-5a4f-4923-96f5-904d8658e5e1/classify/iterations/potato-model/image";
+                    Log.d("ClassificationA", classificationA + " " + "Potato");
                 }
-                Log.e("ImageUploader", "URL Connection: Success");
+                else if (classificationA.equals("Tomato")) {
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c9ec68ae-8bd9-4675-b161-49678e021ff8/classify/iterations/tomato-model/image";
+                    Log.d("ClassificationA", classificationA + " " + "Tomato");
+                }
+                else if (classificationA.equals("Corn")) {
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/b0362215-67da-42ac-850f-0b648896e801/classify/iterations/Iteration1/url";
+                    Log.d("ClassificationA", classificationA + " " + "Corn");
+                }
+                else if (classificationA.equals("Peach")) {
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/164d24eb-a697-404a-b5cc-e3a14a956914/classify/iterations/Iteration1/url";
+                    Log.d("ClassificationA", classificationA + " " + "Peach");
+                }
+                else {
+                    Log.d("ClassificationA", classificationA + " " + "skipped");
+                    return modelOutput+ " - " + conf1*100 + "%";
 
-                answer = sb.toString();*/
-                urlConnection.disconnect();
-                return answer;
+                }
+
+
+                //Third Algo
+                String[] resultC = getAnswer(getClassification(url3));
+                String classificationB = resultC[0];
+
+            Log.d("Classification","Third One Done" + " " + classificationB);
+
+
+
+                double conf2 = Double.parseDouble(resultB[1]);
+                double conf3 = Double.parseDouble(resultC[1]);
+                Log.d("Confidence", conf2 + " " + conf3 + "=" + conf2*conf3);
+                if (conf2*conf3 > conf1 )
+                    return classificationB + " - " + conf2*conf3*100 + "%";
+                else
+                    return modelOutput + " - " + conf1*100 + "%";
+
+        }
+
+
+        public String[] getAnswer(String modelOutput2){
+
+            ArrayList <Double> probabilities = new <Double>ArrayList();
+            ArrayList <String> tags = new <Integer>ArrayList();
+            Log.e("Help",modelOutput2);
+            while(modelOutput2.indexOf("probability") != -1) {
+                modelOutput2 = modelOutput2.substring(modelOutput2.indexOf("probability") + 11);
+                Log.e("Help", modelOutput2);
+
+                int p1 = modelOutput2.indexOf(":") + 1;
+                int p2 = modelOutput2.indexOf(",");
+                probabilities.add(Double.parseDouble(modelOutput2.substring(p1, p2)));
+                Log.e("Help", modelOutput2.substring(p1, p2));
+
+                modelOutput2 = modelOutput2.substring(modelOutput2.indexOf("tagName") + 7);
+                Log.e("Help", modelOutput2);
+
+                int t1 = modelOutput2.indexOf(":") + 2;
+                int t2 = modelOutput2.indexOf("}") - 1;
+                tags.add(modelOutput2.substring(t1, t2));
+                Log.e("Help", modelOutput2.substring(t1, t2));
             }
-            catch(MalformedURLException e){
-                e.printStackTrace();
-            }catch(IOException e){
+            Log.d("Answer",tags.get(0) + " " + (double) Math.round(probabilities.get(0)));
+            return new String[] {tags.get(0), ""+ (double) probabilities.get(0)};
+            }
+
+        public String getClassification(String apiLink)
+        {
+
+            try{
+            URL url = new URL(apiLink);
+            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+            String answer = "";
+            urlConnection.setRequestProperty("Prediction-Key", "167bbe0980344a2bb1e04484c5b53485");
+            urlConnection.setRequestProperty("Content-Type", "image/jpeg");
+            Log.e("ImageUploader", "URL Connection: Success");
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestProperty("Connection", "Keep-Alive");
+            Log.e("ImageUploader", "URL Connection: Success");
+            OutputStream output = urlConnection.getOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, output);
+            output.close();
+            Log.e("ImageUploader", "URL Connection: Success");
+            Scanner s = new Scanner(urlConnection.getInputStream());
+            answer = s.nextLine();
+            Log.e("ImageUploader", "Answer: " + answer);
+            s.close();
+            Log.e("ImageUploader", "URL Connection: Success");
+            urlConnection.disconnect();
+            return answer;
+            }
+
+            catch (IOException e){
                 e.printStackTrace();
             }
             return "";
@@ -180,7 +242,7 @@ public class CaptureActivity extends Activity
 
             modelOutput = s;
 
-            ArrayList <Double> probabilities = new <Double>ArrayList();
+            /*ArrayList <Double> probabilities = new <Double>ArrayList();
             ArrayList <String> tags = new <Integer>ArrayList();
             Log.e("Help",modelOutput);
             while(modelOutput.indexOf("probability") != -1){
@@ -202,17 +264,15 @@ public class CaptureActivity extends Activity
 
             }
 
-            int size = Math.min(3, probabilities.size());
+            //int size = Math.min(3, probabilities.size());
             String result = "";
-            for(int x=0;x<size;x++){
-                result += tags.get(x) + ": " + (double) Math.round(probabilities.get(x) * 100) / 100 + "\n";
-            }
-            resultText.setText(result);
-            Intent intent = new Intent(CaptureActivity.this, SuggestionActivity.class);
-            intent.putExtra("class", resultText.getText());
-            startActivity(intent);
+            //for(int x=0;x<size;x++){
+                result += tags.get(0) + ": " + (double) Math.round(probabilities.get(0) * 100) + "%\n";
+            //} */
+            resultText.setText(s);
             pd.dismiss();
         }
+
 
     }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,36 +11,33 @@
         android:id="@+id/farm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="204dp"
-        android:layout_marginBottom="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="191dp"
+        android:layout_marginBottom="17dp"
         android:background="@null"
-        android:onClick="farmActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:onClick="farmActivity" />
 
     <Button
         android:id="@+id/dashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="292dp"
-        android:layout_marginBottom="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="294dp"
+        android:layout_marginBottom="13dp"
         android:background="@null"
-        android:onClick="dashboardActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:onClick="dashboardActivity" />
 
     <Button
         android:id="@+id/capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="15dp"
         android:background="@null"
-        android:onClick="captureActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:onClick="captureActivity" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -10,10 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-    <uses-feature android:name="android.hardware.camera" android:required = "true"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
@@ -23,27 +24,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".DetailView"></activity>
         <activity android:name=".ClassifierActivity" />
         <activity android:name=".CaptureActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".PinActivity" />
-        <activity android:name=".DashboardActivity"/>
-        <activity android:name=".ProfileActivity"/>
-        <activity android:name=".SuggestionActivity"/>
-        <activity android:name=".FarmActivity"/>
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SuggestionActivity" />
+        <activity android:name=".FarmActivity" />
         <activity android:name=".MainActivity">
-
-
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
-            android:name = "com.google.android.geo.API_KEY"
-            android:value = "AIzaSyAOT2djQhc9kFMQn-Ivs5Za7vSbt6eaLdA"/>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAOT2djQhc9kFMQn-Ivs5Za7vSbt6eaLdA" />
     </application>
 
 </manifest>
