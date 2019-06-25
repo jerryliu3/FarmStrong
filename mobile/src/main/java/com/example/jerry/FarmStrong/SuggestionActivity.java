@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -41,7 +42,6 @@ public class SuggestionActivity extends AppCompatActivity {
 
             int x = (int) event.getX();
             int y = (int) event.getY();
-            point = new ImageView(getApplicationContext());
             final RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -58,13 +58,24 @@ public class SuggestionActivity extends AppCompatActivity {
                         rl.addView(point);
                         firstTouch = true;
                     }
+                    else
+                    {
+
+
+                    }
                     Log.i("TAG", "touched down");
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.i("TAG", "moving: (" + x + ", " + y + ")");
                     if (firstTouch) {
+                        ((ViewGroup)point.getParent()).removeView(point);
+                        xFinal = x;
+                        yFinal = y;
                         lp.setMargins(x, y, 0, 0);
                         point.setLayoutParams(lp);
+                        point.getLayoutParams().height = 70;
+                        point.getLayoutParams().width = 40;
+                        rl.addView(point);
                     }
                     break;
                 case MotionEvent.ACTION_UP:
@@ -72,12 +83,15 @@ public class SuggestionActivity extends AppCompatActivity {
 
                     break;
             }
-            point.requestLayout();
             return true;
         }
     };
 
-    @Override
+
+
+
+
+@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggestion);
@@ -85,6 +99,7 @@ public class SuggestionActivity extends AppCompatActivity {
         imageBitmap = intent.getParcelableExtra("img");
         message = intent.getStringExtra("class");
         ImageView farm = findViewById(R.id.farm);
+        point = new ImageView(getApplicationContext());
         farm.setOnTouchListener(handleTouch);
 
         //classText.setText("The class of disease found was: " + message);
@@ -93,13 +108,14 @@ public class SuggestionActivity extends AppCompatActivity {
     }
 
     public void confirm(View view) {
-        if (firstTouch)
+        EditText name = findViewById(R.id.name);
+        if (firstTouch && !name.getText().toString().equals(""))
         {
 
             Log.d("Printer", "Attempting Print");
 
 
-            EditText name = findViewById(R.id.name);
+
 
             File path = this.getFilesDir();
             File file = new File(path,"pins.txt");
@@ -108,7 +124,7 @@ public class SuggestionActivity extends AppCompatActivity {
             File img = new File(imgPath,name.getText().toString()+".jpg");
             FileOutputStream fos = null;
             try{
-                PrintWriter out = new PrintWriter(file);
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file,true)));
                 out.println(name.getText().toString());
                 out.println(xFinal);
                 out.println(yFinal);

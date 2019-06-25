@@ -33,15 +33,17 @@ public class FarmActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
-                String name = in.readLine();
+            String line = null;
+            while((line = in.readLine()) != null) {
+                lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                String name = line;
                 String x = in.readLine();
                 String y = in.readLine();
                 Log.e("File Read", name + " " + x + " " + y);
                 ImageView point = new ImageView(getApplicationContext());
                 point.setTag(name);
-                point.setOnClickListener(new View.OnClickListener(){
-                    public void onClick (View view)
-                    {
+                point.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
                         detailView(view);
                     }
                 });
@@ -51,6 +53,7 @@ public class FarmActivity extends AppCompatActivity {
                 point.getLayoutParams().width = 40;
                 point.setImageResource(R.drawable.pin);
                 rl.addView(point);
+            }
         }
         catch (IOException e)
         {

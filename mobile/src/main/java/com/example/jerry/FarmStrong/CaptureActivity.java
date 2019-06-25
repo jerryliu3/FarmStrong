@@ -153,7 +153,7 @@ public class CaptureActivity extends Activity
                 }
                 else {
                     Log.d("ClassificationA", classificationA + " " + "skipped");
-                    return modelOutput+ " - " + conf1*100 + "%";
+                    return modelOutput + " - " + String.format("%.2f",conf1*100) + "%";
 
                 }
 
@@ -170,9 +170,9 @@ public class CaptureActivity extends Activity
                 double conf3 = Double.parseDouble(resultC[1]);
                 Log.d("Confidence", conf2 + " " + conf3 + "=" + conf2*conf3);
                 if (conf2*conf3 > conf1 )
-                    return classificationB + " - " + conf2*conf3*100 + "%";
+                    return classificationB + " - " + String.format("%.2f",conf2*conf3*100) + "%";
                 else
-                    return modelOutput + " - " + conf1*100 + "%";
+                    return modelOutput + " - " + String.format("%.2f",conf1*100) + "%";
 
         }
 
@@ -200,6 +200,11 @@ public class CaptureActivity extends Activity
                 Log.e("Help", modelOutput2.substring(t1, t2));
             }
             Log.d("Answer",tags.get(0) + " " + (double) Math.round(probabilities.get(0)));
+            String temp = tags.get(0);
+            if (tags.get(0).equals("Negative"))
+            {
+                temp = "Unknown Class";
+            }
             return new String[] {tags.get(0), ""+ (double) probabilities.get(0)};
             }
 
