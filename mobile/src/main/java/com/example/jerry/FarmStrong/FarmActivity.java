@@ -1,9 +1,19 @@
 package com.example.jerry.FarmStrong;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Interpolator;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -22,9 +32,76 @@ public class FarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farm);
         renderPoints();
-
+        FrameLayout frame = (FrameLayout) findViewById(R.id.full_farm);
+        PlayAreaView image = new PlayAreaView(this);
+        frame.addView(image);
     }
 
+    private class GestureListener implements GestureDetector.OnGestureListener {
+        PlayAreaView view;
+        public GestureListener(PlayAreaView view) {
+            this.view = view;
+        }
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            return true;
+        }
+        @Override
+        public void onShowPress(MotionEvent e) {
+        }
+        @Override
+        public void onLongPress(MotionEvent e) {
+        }
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2,
+                                float distanceX, float distanceY) {
+
+            view.onMove(-distanceX, 0);
+            return true;
+        }
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2,
+                               final float velocityX, final float velocityY) {
+            final float distanceTimeFactor = 0.4f;
+            final float totalDx = (distanceTimeFactor * velocityX/2);
+            final float totalDy = (distanceTimeFactor * velocityY/2);
+            return true;
+        }
+    }
+    private class PlayAreaView extends View {
+        private GestureDetector gestures;
+        public PlayAreaView(Context context) {
+            super(context);
+            translate = new Matrix();
+            gestures = new GestureDetector(FarmActivity.this,
+                    new GestureListener(this));
+            droid = BitmapFactory.decodeResource(getResources(),
+                    R.drawable.fullmap);
+        }
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            return gestures.onTouchEvent(event);
+        }
+        private Matrix translate;
+        private Bitmap droid;
+        protected void onDraw(Canvas canvas) {
+            canvas.drawBitmap(droid, translate, null);
+            Matrix m = canvas.getMatrix();
+        }
+        public void onMove(float dx, float dy) {
+            translate.postTranslate(dx, dy);
+            invalidate();
+        }
+        public void onResetLocation() {
+            translate.reset();
+            invalidate();
+        }
+
+    }
     public void renderPoints()
     {
         File path = this.getFilesDir();
