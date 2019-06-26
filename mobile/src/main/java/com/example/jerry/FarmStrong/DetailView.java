@@ -58,6 +58,15 @@ public class DetailView extends AppCompatActivity {
         solutions.put("Corn: Common Rust","To reduce the incidence of corn rust, plant only corn that has resistance to the fungus. Resistance is either in the form of race-specific resistance or partial rust resistance. In either case, no sweet corn is completely resistant. If the corn begins to show symptoms of infection, immediately spray with a fungicide. The fungicide is most effective when started at the first sign of infection. Two applications may be necessary.");
         solutions.put("Corn: Northern Leaf Blight","Crop rotation to reduce previous corn residues and disease inoculum. Tillage to help break down crop debris and reduce inoculum load. Fungicide application to reduce yield loss and improve harvestability. Consider hybrid susceptibility, previous crop, tillage, field history, application cost, corn price");
         solutions.put("Corn: Grey Leaf Spot","Crop rotation may reduce disease pressure, but rotation is only a partial solution. Compared to other residue-borne pathogens, gray leaf spot has longer survival time in debris");
+        solutions.put("Tomato: Healthy ","healthy- You’re safe! There is nothing to worry about on your plant");
+        solutions.put("Tomato: Early Blight","Controlling the environment to prevent excessive heat, moisture, and crowding helps to inhibit the fungal growth. Remove affected leaves and adjust care as necessary.");
+        solutions.put("Tomato: Late Blight","Controlling the environment to prevent excessive heat, moisture, and crowding helps to inhibit the fungal growth. Remove affected leaves and adjust care as necessary.");
+        solutions.put("Tomato: Bacterial Spot","To treat the problem, remove the infected areas as soon as you see them.");
+        solutions.put("Tomato: Leaf Mold", "Let the plants air out. If they are being grown in a green house, air exposure is a must, because the humidity that the fungus needs to survive is dried up.\n" + "If the tomatoes are being grown outside, try to keep from wetting the leaves when you are watering the plants. When you water the plants, earlier watering is optimal because it allows the plant time to dry when the sun comes, keeping humidity around leaves to a minimum.\n");
+        solutions.put("Tomato: Septoria Leaf Spot"," Leaf spots are caused by a fungus, encouraged by excess heat and moisture, so removing the affected leaves and adjusting the environment will help to stop the spread.");
+        solutions.put("Tomato: Target Spot"," Leaf spots are caused by a fungus, encouraged by excess heat and moisture, so removing the affected leaves and adjusting the environment will help to stop the spread.");
+        solutions.put("Tomato: Tomato Mosaic Virus","Fungicide will NOT treat this viral disease, spot treat with least-toxic natural pest control.");
+        solutions.put("Tomato: Yellow Leaf Curl Virus","Treatments that are commonly used for this disease include insecticides, hybrid seeds, and growing tomatoes under greenhouse conditions.\n");
         solutions.put("Unknown Class","This is not a crop that is covered by this application");
 
 
