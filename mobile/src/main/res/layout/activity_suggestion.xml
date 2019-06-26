@@ -57,5 +57,11 @@
         android:ems="10"
         android:hint="Enter Name"
         android:inputType="textPersonName" />
+    <FrameLayout
+        android:id="@+id/full_farm"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingBottom="70dp">
+    </FrameLayout>
 
 </RelativeLayout>
