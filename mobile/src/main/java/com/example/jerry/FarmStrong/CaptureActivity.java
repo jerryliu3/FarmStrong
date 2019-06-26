@@ -144,11 +144,11 @@ public class CaptureActivity extends Activity
                     Log.d("ClassificationA", classificationA + " " + "Tomato");
                 }
                 else if (classificationA.equals("Corn")) {
-                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/b0362215-67da-42ac-850f-0b648896e801/classify/iterations/Iteration1/url";
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/b0362215-67da-42ac-850f-0b648896e801/classify/iterations/Iteration1/image";
                     Log.d("ClassificationA", classificationA + " " + "Corn");
                 }
                 else if (classificationA.equals("Peach")) {
-                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/164d24eb-a697-404a-b5cc-e3a14a956914/classify/iterations/Iteration1/url";
+                    url3 = "https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/164d24eb-a697-404a-b5cc-e3a14a956914/classify/iterations/Iteration1/image";
                     Log.d("ClassificationA", classificationA + " " + "Peach");
                 }
                 else {
@@ -205,7 +205,7 @@ public class CaptureActivity extends Activity
             {
                 temp = "Unknown Class";
             }
-            return new String[] {tags.get(0), ""+ (double) probabilities.get(0)};
+            return new String[] {temp, ""+ (double) probabilities.get(0)};
             }
 
         public String getClassification(String apiLink)
