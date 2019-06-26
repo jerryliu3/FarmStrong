@@ -34,6 +34,7 @@ public class CaptureActivity extends Activity
     private Bitmap imageBitmap;
     private TextView resultText;
     private String modelOutput;
+    private boolean classified = false;
 
 
     private String name;
@@ -65,19 +66,23 @@ public class CaptureActivity extends Activity
     public void classify(View view){
         //do machine learning
         new callAPI().execute();
+        classified = true;
      }
 
     public void classify(){
         //do machine learning
         new callAPI().execute();
+
     }
 
     public void savePhoto(View view){
-        Intent intent = new Intent(CaptureActivity.this, SuggestionActivity.class);
-        intent.putExtra("class", resultText.getText());
-        intent.putExtra("img",imageBitmap);
-        startActivity(intent);
-        finish();
+        if(classified) {
+            Intent intent = new Intent(CaptureActivity.this, SuggestionActivity.class);
+            intent.putExtra("class", resultText.getText());
+            intent.putExtra("img", imageBitmap);
+            startActivity(intent);
+            finish();
+        }
 
     }
 
