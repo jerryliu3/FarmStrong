@@ -3,25 +3,23 @@ package com.example.jerry.FarmStrong;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.icu.util.Output;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +40,7 @@ public class SuggestionActivity extends AppCompatActivity {
 
             int x = (int) event.getX();
             int y = (int) event.getY();
-            final RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
+            final RelativeLayout rl = (RelativeLayout) findViewById(R.id.constraint);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
             switch (event.getAction()) {
@@ -87,7 +85,39 @@ public class SuggestionActivity extends AppCompatActivity {
         }
     };
 
+    public void renderPoints()
+    {
+        File path = this.getFilesDir();
+        File file = new File(path,"pins.txt");
+        final RelativeLayout rl = (RelativeLayout) findViewById(R.id.constraint);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String line = null;
+            while((line = in.readLine()) != null) {
+                lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                String name = line;
+                String description = in.readLine();
+                String x = in.readLine();
+                String y = in.readLine();
+                Log.e("File Read", name + " " + x + " " + y);
+                ImageView point = new ImageView(getApplicationContext());
+                point.setTag(name);
+                lp.setMargins(Integer.parseInt(x), Integer.parseInt(y), 0, 0);
+                point.setContentDescription(description);
+                point.setLayoutParams(lp);
+                point.getLayoutParams().height = 70;
+                point.getLayoutParams().width = 40;
+                point.setImageResource(R.drawable.pin);
+                rl.addView(point);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
+    }
 
 
 
@@ -101,14 +131,14 @@ public class SuggestionActivity extends AppCompatActivity {
         ImageView farm = findViewById(R.id.farm);
         point = new ImageView(getApplicationContext());
         farm.setOnTouchListener(handleTouch);
-
+        renderPoints();
         //classText.setText("The class of disease found was: " + message);
 
 
     }
 
     public void confirm(View view) {
-        EditText name = findViewById(R.id.name);
+        EditText name = findViewById(R.id.classification);
         if (firstTouch && !name.getText().toString().equals(""))
         {
 
@@ -126,6 +156,7 @@ public class SuggestionActivity extends AppCompatActivity {
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file,true)));
                 out.println(name.getText().toString());
+                out.println(message);
                 out.println(xFinal);
                 out.println(yFinal);
                 out.close();
