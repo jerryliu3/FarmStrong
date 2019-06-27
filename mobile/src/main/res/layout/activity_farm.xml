@@ -5,7 +5,7 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/farmnew"
+    android:background="@drawable/farmnew2"
     tools:context=".FarmActivity">
 
     <Button
@@ -46,6 +46,6 @@
         android:id="@+id/full_farm"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:paddingBottom="70dp">
+        android:paddingBottom="55dp">
     </FrameLayout>
 </RelativeLayout>
